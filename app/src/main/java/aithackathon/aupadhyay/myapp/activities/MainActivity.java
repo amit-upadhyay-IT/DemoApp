@@ -634,6 +634,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             getCityByLocation();
             return true;
         }
+        if (id == R.id.detect_cam_image) {
+            Intent intent = new Intent(MainActivity.this, CameraActivityFarm.class);
+            startActivity(intent);
+        }
         if (id == R.id.settings_toolbar) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);

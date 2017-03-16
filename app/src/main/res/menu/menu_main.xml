@@ -27,6 +27,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/detect_cam_image"
+        android:title="Detect Cam Image"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/settings_toolbar"
         android:title="Settings"
         app:showAsAction="never"/>

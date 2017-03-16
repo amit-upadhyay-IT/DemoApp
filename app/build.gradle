@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "aithackathon.aupadhyay.myapp"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 14
         versionName "1.2"
@@ -48,4 +48,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    compile project(path: ':amitTF')
 }
