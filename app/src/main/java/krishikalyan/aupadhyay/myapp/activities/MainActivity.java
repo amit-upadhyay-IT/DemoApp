@@ -129,9 +129,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         setContentView(R.layout.activity_scrolling);
         appView = findViewById(R.id.viewApp);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-
         progressDialog = new ProgressDialog(MainActivity.this);
 
         // Load toolbar
