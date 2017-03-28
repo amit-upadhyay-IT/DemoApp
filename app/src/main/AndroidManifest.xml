@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="aithackathon.aupadhyay.myapp">
+    package="krishikalyan.aupadhyay.myapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="krishikalyan.aupadhyay.myapp.activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="krishikalyan.aupadhyay.myapp.activities.SettingsActivity"
             android:theme="@style/AppTheme" />
 
-        <receiver android:name=".widgets.ExtensiveWidgetProvider">
+        <receiver android:name="krishikalyan.aupadhyay.myapp.widgets.ExtensiveWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -36,7 +36,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/extensive_widget" />
         </receiver>
-        <receiver android:name=".widgets.TimeWidgetProvider">
+        <receiver android:name="krishikalyan.aupadhyay.myapp.widgets.TimeWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -47,7 +47,7 @@
         </receiver>
 
         <service
-            android:name=".widgets.DashClockWeatherExtension"
+            android:name="krishikalyan.aupadhyay.myapp.widgets.DashClockWeatherExtension"
             android:icon="@drawable/ic_cloud_white_24dp"
             android:label="@string/app_name"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
@@ -66,7 +66,7 @@
                 android:value=".ExampleSettingsActivity" />
         </service>
 
-        <receiver android:name=".AlarmReceiver">
+        <receiver android:name="krishikalyan.aupadhyay.myapp.AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -74,26 +74,26 @@
         </receiver>
 
         <activity
-            android:name=".activities.MapActivity"
-            android:parentActivityName=".activities.MainActivity"
+            android:name="krishikalyan.aupadhyay.myapp.activities.MapActivity"
+            android:parentActivityName="krishikalyan.aupadhyay.myapp.activities.MainActivity"
             android:theme="@style/AppTheme.NoStatusBar" />
         <activity
-            android:name=".activities.GraphActivity"
+            android:name="krishikalyan.aupadhyay.myapp.activities.GraphActivity"
             android:label="@string/action_graphs"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="krishikalyan.aupadhyay.myapp.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="krishikalyan.aupadhyay.myapp.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.SignupActivity"
+            android:name="krishikalyan.aupadhyay.myapp.activities.SignupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.CameraActivityFarm"
+            android:name="krishikalyan.aupadhyay.myapp.activities.CameraActivityFarm"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".farmershome.FarmersHomeActivity"></activity>
+        <activity android:name="krishikalyan.aupadhyay.myapp.farmershome.FarmersHomeActivity"></activity>
     </application>
 
 </manifest>

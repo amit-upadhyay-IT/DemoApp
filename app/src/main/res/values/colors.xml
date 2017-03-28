@@ -25,4 +25,6 @@
     <color name="classic_darkTheme_colorAccent">#90a4ae</color>
     <color name="classic_darkTheme_colorBackground">#303030</color>
     <color name="classic_darkTheme_colorTintedBackground">#263238</color>
+
+    <color name="paint_color">#ffffff</color>
 </resources>

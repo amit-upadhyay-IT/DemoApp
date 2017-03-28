@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "aithackathon.aupadhyay.myapp"
+        applicationId "krishikalyan.aupadhyay.myapp"
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 14
@@ -49,4 +49,8 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     compile project(path: ':amitTF')
+
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.github.devlight.navigationtabstrip:navigationtabstrip:1.0.4'
 }
+apply plugin: 'com.google.gms.google-services'

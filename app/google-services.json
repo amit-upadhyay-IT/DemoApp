@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "273606360968",
+    "firebase_url": "https://krishi-kalyan.firebaseio.com",
+    "project_id": "krishi-kalyan",
+    "storage_bucket": "krishi-kalyan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273606360968:android:da18ab5b6acd7fc6",
+        "android_client_info": {
+          "package_name": "krishikalyan.aupadhyay.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273606360968-oqjgs2j8vrit3cm8q27r3r1f4eldb3k0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "krishikalyan.aupadhyay.myapp",
+            "certificate_hash": "df1d07758993845c064a78e07c5c9c9770dcf9c4"
+          }
+        },
+        {
+          "client_id": "273606360968-h8bmm4nno9ti0rnaof7uuf1pbeip0a2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDonY2sDs7nO_vuO7u-1QYFpJawUfrGySg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273606360968-h8bmm4nno9ti0rnaof7uuf1pbeip0a2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

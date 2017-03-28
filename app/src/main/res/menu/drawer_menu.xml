@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_group_1">
+        <item
+            android:id="@+id/home_nav"
+            android:icon="@drawable/ic_global_menu_feed"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/profile_nav"
+            android:icon="@drawable/ic_global_menu_nearby"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/crops_info_nav"
+            android:icon="@drawable/ic_global_menu_likes"
+            android:title="Crops Info" />
+
+
+        <item
+            android:id="@+id/crops_checking_nav"
+            android:icon="@drawable/ic_global_menu_popular"
+            android:title="Crops checking" />
+
+
+        <item
+            android:id="@+id/menu_share"
+            android:icon="@drawable/ic_global_menu_direct"
+            android:title="Share it!" />
+    </group>
+    <group android:id="@+id/menu_group_2">
+        <item
+            android:id="@+id/menu_settings"
+            android:title="Settings" />
+        <item
+            android:id="@+id/menu_about"
+            android:title="About" />
+    </group>
+</menu>

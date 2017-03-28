@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="aithackathon.aupadhyay.myapp.activities.GraphActivity">
+    tools:context="krishikalyan.aupadhyay.myapp.activities.GraphActivity">
 
     <ScrollView
         android:id="@+id/graph_scrollView"
