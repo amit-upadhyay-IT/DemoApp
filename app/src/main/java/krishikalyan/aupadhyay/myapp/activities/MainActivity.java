@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             switch (id)
             {
                 case R.id.home_nav:
-                    Toast.makeText(MainActivity.this, "Menu Feed", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     break;
                 case R.id.menu_settings :
                     startActivity(new Intent(MainActivity.this, SettingsActivity.class));

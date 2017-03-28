@@ -37,9 +37,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,7 +54,9 @@ import java.util.Map;
 import krishikalyan.aupadhyay.myapp.AlarmReceiver;
 import krishikalyan.aupadhyay.myapp.Constants;
 import krishikalyan.aupadhyay.myapp.R;
+import krishikalyan.aupadhyay.myapp.adapters.ViewPagerAdapter;
 import krishikalyan.aupadhyay.myapp.adapters.WeatherRecyclerAdapter;
+import krishikalyan.aupadhyay.myapp.fragments.RecyclerViewFragment;
 import krishikalyan.aupadhyay.myapp.models.Weather;
 import krishikalyan.aupadhyay.myapp.navdrawer.MyMenuFragment;
 import krishikalyan.aupadhyay.myapp.navdrawer.core.AmitStyleDrawer;
@@ -59,6 +64,9 @@ import krishikalyan.aupadhyay.myapp.navdrawer.core.FlowingView;
 import krishikalyan.aupadhyay.myapp.tasks.GenericRequestTask2;
 import krishikalyan.aupadhyay.myapp.tasks.ParseResult;
 import krishikalyan.aupadhyay.myapp.tasks.TaskOutput;
+import krishikalyan.aupadhyay.myapp.utils.UnitConvertor;
+import krishikalyan.aupadhyay.myapp.widgets.AbstractWidgetProvider;
+import krishikalyan.aupadhyay.myapp.widgets.DashClockWeatherExtension;
 
 public class HomeActivity extends AppCompatActivity implements LocationListener, MyMenuFragment.AmitCallbackWhenDrawerOpens {
 
@@ -116,8 +124,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);*/
 
         appView = findViewById(R.id.viewApp);
 
@@ -165,6 +173,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         todayIcon.setTypeface(weatherFont);
 
         // Initialize viewPager
+//        viewPager = (ViewPager) findViewById(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         destroyed = false;
@@ -172,11 +181,11 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         initMappings();
 
         // Preload data from cache
+        preloadWeather();
         updateLastUpdateTime();
 
         // Set autoupdater
         AlarmReceiver.setRecurringAlarm(this);
-
     }
 
     NavigationView.OnNavigationItemSelectedListener navlistner=new NavigationView.OnNavigationItemSelectedListener() {
@@ -189,7 +198,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             switch (id)
             {
                 case R.id.home_nav:
-                    Toast.makeText(HomeActivity.this, "Menu Feed", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                     break;
                 case R.id.menu_settings :
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
@@ -258,6 +267,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             overridePendingTransition(0, 0);
             startActivity(getIntent());
         } else if (shouldUpdate() && isNetworkAvailable()) {
+            getTodayWeather();
+            getLongTermWeather();
         }
     }
 
@@ -273,6 +284,27 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                 e.printStackTrace();
             }
         }
+    }
+
+    private void preloadWeather() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
+
+        String lastToday = sp.getString("lastToday", "");
+        if (!lastToday.isEmpty()) {
+            new TodayWeatherTask(this, this, progressDialog).execute("cachedResponse", lastToday);
+        }
+        String lastLongterm = sp.getString("lastLongterm", "");
+        if (!lastLongterm.isEmpty()) {
+            new LongTermWeatherTask(this, this, progressDialog).execute("cachedResponse", lastLongterm);
+        }
+    }
+
+    private void getTodayWeather() {
+        new TodayWeatherTask(this, this, progressDialog).execute();
+    }
+
+    private void getLongTermWeather() {
+        new LongTermWeatherTask(this, this, progressDialog).execute();
     }
 
     private void searchCities() {
@@ -309,6 +341,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
 
         if (!recentCity.equals(result)) {
             // New location, update weather
+            getTodayWeather();
+            getLongTermWeather();
         }
     }
 
@@ -459,7 +493,183 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         return ParseResult.OK;
     }
 
+    private void updateTodayWeatherUI() {
+        try {
+            if (todayWeather.getCountry().isEmpty()) {
+                preloadWeather();
+                return;
+            }
+        } catch (Exception e) {
+            preloadWeather();
+            return;
+        }
+        String city = todayWeather.getCity();
+        String country = todayWeather.getCountry();
+        DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
+        getSupportActionBar().setTitle(city + (country.isEmpty() ? "" : ", " + country));
 
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
+
+        // Temperature
+        float temperature = UnitConvertor.convertTemperature(Float.parseFloat(todayWeather.getTemperature()), sp);
+        if (sp.getBoolean("temperatureInteger", false)) {
+            temperature = Math.round(temperature);
+        }
+
+        // Rain
+        double rain = Double.parseDouble(todayWeather.getRain());
+        String rainString = UnitConvertor.getRainString(rain, sp);
+
+        // Wind
+        double wind;
+        try {
+            wind = Double.parseDouble(todayWeather.getWind());
+        } catch (Exception e) {
+            e.printStackTrace();
+            wind = 0;
+        }
+        wind = UnitConvertor.convertWind(wind, sp);
+
+        // Pressure
+        double pressure = UnitConvertor.convertPressure((float) Double.parseDouble(todayWeather.getPressure()), sp);
+
+        todayTemperature.setText(new DecimalFormat("#.#").format(temperature) + " °" + sp.getString("unit", "C"));
+        todayDescription.setText(todayWeather.getDescription().substring(0, 1).toUpperCase() +
+                todayWeather.getDescription().substring(1) + rainString);
+        if (sp.getString("speedUnit", "m/s").equals("bft")) {
+            todayWind.setText(getString(R.string.wind) + ": " +
+                    UnitConvertor.getBeaufortName((int) wind) +
+                    (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
+        } else {
+            todayWind.setText(getString(R.string.wind) + ": " + new DecimalFormat("#.0").format(wind) + " " +
+                    localize(sp, "speedUnit", "m/s") +
+                    (todayWeather.isWindDirectionAvailable() ? " " + getWindDirectionString(sp, this, todayWeather) : ""));
+        }
+        todayPressure.setText(getString(R.string.pressure) + ": " + new DecimalFormat("#.0").format(pressure) + " " +
+                localize(sp, "pressureUnit", "hPa"));
+        todayHumidity.setText(getString(R.string.humidity) + ": " + todayWeather.getHumidity() + " %");
+        todaySunrise.setText(getString(R.string.sunrise) + ": " + timeFormat.format(todayWeather.getSunrise()));
+        todaySunset.setText(getString(R.string.sunset) + ": " + timeFormat.format(todayWeather.getSunset()));
+        todayIcon.setText(todayWeather.getIcon());
+    }
+
+    public ParseResult parseLongTermJson(String result) {
+        int i;
+        try {
+            JSONObject reader = new JSONObject(result);
+
+            final String code = reader.optString("cod");
+            if ("404".equals(code)) {
+                if (longTermWeather == null) {
+                    longTermWeather = new ArrayList<>();
+                    longTermTodayWeather = new ArrayList<>();
+                    longTermTomorrowWeather = new ArrayList<>();
+                }
+                return ParseResult.CITY_NOT_FOUND;
+            }
+
+            longTermWeather = new ArrayList<>();
+            longTermTodayWeather = new ArrayList<>();
+            longTermTomorrowWeather = new ArrayList<>();
+
+            JSONArray list = reader.getJSONArray("list");
+            for (i = 0; i < list.length(); i++) {
+                Weather weather = new Weather();
+
+                JSONObject listItem = list.getJSONObject(i);
+                JSONObject main = listItem.getJSONObject("main");
+
+                weather.setDate(listItem.getString("dt"));
+                weather.setTemperature(main.getString("temp"));
+                weather.setDescription(listItem.optJSONArray("weather").getJSONObject(0).getString("description"));
+                JSONObject windObj = listItem.optJSONObject("wind");
+                if (windObj != null) {
+                    weather.setWind(windObj.getString("speed"));
+                    weather.setWindDirectionDegree(windObj.getDouble("deg"));
+                }
+                weather.setPressure(main.getString("pressure"));
+                weather.setHumidity(main.getString("humidity"));
+
+                JSONObject rainObj = listItem.optJSONObject("rain");
+                String rain = "";
+                if (rainObj != null) {
+                    rain = getRainString(rainObj);
+                } else {
+                    JSONObject snowObj = listItem.optJSONObject("snow");
+                    if (snowObj != null) {
+                        rain = getRainString(snowObj);
+                    } else {
+                        rain = "0";
+                    }
+                }
+                weather.setRain(rain);
+
+                final String idString = listItem.optJSONArray("weather").getJSONObject(0).getString("id");
+                weather.setId(idString);
+
+                final String dateMsString = listItem.getString("dt") + "000";
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(Long.parseLong(dateMsString));
+                weather.setIcon(setWeatherIcon(Integer.parseInt(idString), cal.get(Calendar.HOUR_OF_DAY)));
+
+                Calendar today = Calendar.getInstance();
+                if (cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)) {
+                    longTermTodayWeather.add(weather);
+                } else if (cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)+1) {
+                    longTermTomorrowWeather.add(weather);
+                } else {
+                    longTermWeather.add(weather);
+                }
+            }
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this).edit();
+            editor.putString("lastLongterm", result);
+            editor.commit();
+        } catch (JSONException e) {
+            Log.e("JSONException Data", result);
+            e.printStackTrace();
+            return ParseResult.JSON_EXCEPTION;
+        }
+
+        return ParseResult.OK;
+    }
+
+    private void updateLongTermWeatherUI() {
+        if (destroyed) {
+            return;
+        }
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        Bundle bundleToday = new Bundle();
+        bundleToday.putInt("day", 0);
+        RecyclerViewFragment recyclerViewFragmentToday = new RecyclerViewFragment();
+        recyclerViewFragmentToday.setArguments(bundleToday);
+        viewPagerAdapter.addFragment(recyclerViewFragmentToday, getString(R.string.today));
+
+        Bundle bundleTomorrow = new Bundle();
+        bundleTomorrow.putInt("day", 1);
+        RecyclerViewFragment recyclerViewFragmentTomorrow = new RecyclerViewFragment();
+        recyclerViewFragmentTomorrow.setArguments(bundleTomorrow);
+        viewPagerAdapter.addFragment(recyclerViewFragmentTomorrow, getString(R.string.tomorrow));
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("day", 2);
+        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+        recyclerViewFragment.setArguments(bundle);
+        viewPagerAdapter.addFragment(recyclerViewFragment, getString(R.string.later));
+
+/*        int currentPage = viewPager.getCurrentItem();
+
+        viewPagerAdapter.notifyDataSetChanged();
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setPageTransformer(true, new CubeOutTransformer());
+
+        if (currentPage == 0 && longTermTodayWeather.isEmpty()) {
+            currentPage = 1;
+        }
+        viewPager.setCurrentItem(currentPage, false);*/
+    }
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -486,6 +696,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
 
         if (id == R.id.action_refresh) {
             if (isNetworkAvailable()) {
+                getTodayWeather();
+                getLongTermWeather();
             } else {
                 Snackbar.make(appView, getString(R.string.msg_connection_not_available), Snackbar.LENGTH_LONG).show();
             }
@@ -670,6 +882,64 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+
+    class TodayWeatherTask extends GenericRequestTask2 {
+        public TodayWeatherTask(Context context, HomeActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            loading = 0;
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(TaskOutput output) {
+            super.onPostExecute(output);
+            // Update widgets
+            AbstractWidgetProvider.updateWidgets(HomeActivity.this);
+            DashClockWeatherExtension.updateDashClock(HomeActivity.this);
+        }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            return parseTodayJson(response);
+        }
+
+        @Override
+        protected String getAPIName() {
+            return "weather";
+        }
+
+        @Override
+        protected void updateMainUI() {
+            updateTodayWeatherUI();
+            updateLastUpdateTime();
+        }
+    }
+
+    class LongTermWeatherTask extends GenericRequestTask2 {
+        public LongTermWeatherTask(Context context, HomeActivity activity, ProgressDialog progressDialog) {
+            super(context, activity, progressDialog);
+        }
+
+        @Override
+        protected ParseResult parseResponse(String response) {
+            return parseLongTermJson(response);
+        }
+
+        @Override
+        protected String getAPIName() {
+            return "forecast";
+        }
+
+        @Override
+        protected void updateMainUI() {
+            updateLongTermWeatherUI();
+        }
     }
 
     class ProvideCityNameTask extends GenericRequestTask2 {
