@@ -198,7 +198,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             switch (id)
             {
                 case R.id.home_nav:
-                    
+
                     break;
                 case R.id.menu_settings :
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
@@ -245,17 +245,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         myMenuFragment.navigationView.setNavigationItemSelectedListener(navlistner);
     }
 
-    public WeatherRecyclerAdapter getAdapter(int id) {
-        WeatherRecyclerAdapter weatherRecyclerAdapter;
-        if (id == 0) {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTodayWeather);
-        } else if (id == 1) {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermTomorrowWeather);
-        } else {
-            weatherRecyclerAdapter = new WeatherRecyclerAdapter(this, longTermWeather);
-        }
-        return weatherRecyclerAdapter;
-    }
 
     @Override
     public void onResume() {
