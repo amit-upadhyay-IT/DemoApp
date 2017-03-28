@@ -40,4 +40,10 @@
     <color name="myfavColor">#423752</color>
     <color name="darkred">#ffb4284d</color>
     <color name="fab_color_pressed">#007787</color>
+
+    <color name="black_alpha_40">#66000000</color>
+    <color name="black_alpha_20">#34000000</color>
+    <color name="black_alpha_10">#1a000000</color>
+    <color name="black_alpha_00">#00000000</color>
+
 </resources>

@@ -93,7 +93,8 @@
             android:name=".loginstuffs.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".loginstuffs.SignupActivity"></activity>
+        <activity android:name=".loginstuffs.SignupActivity" />
+        <activity android:name=".loginstuffs.SocialLoginActivity"></activity>
     </application>
 
 </manifest>
