@@ -351,9 +351,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     private void aboutDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("SunShine App");
+        alert.setTitle("KisanKalyan App");
         final WebView webView = new WebView(this);
-        String about = "<p>AIT Hackathon android app</p>" +
+        String about = "<p>Smart India Hackathon app</p>" +
                 "<p>Developed by <a href='mailto:amitwebhero@gmail.com'>Amit Upadhyay</a>, Aman Dubey, Tejisman Parida</p>" +
                 "<p>This app is made for hackathon competition held at Army Institute of Technology, Pune" +
                 "<p>In this app we are Analyzing & finding pattern of past years data of a place using concepts such as Big Data, Hadoop & R programming. The analysis & foretasted weather data is used for prediction of future disasters, such as  Crop failure, Flood, Drought etc.";
