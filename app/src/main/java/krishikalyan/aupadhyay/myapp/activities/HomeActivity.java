@@ -55,8 +55,8 @@ import krishikalyan.aupadhyay.myapp.AlarmReceiver;
 import krishikalyan.aupadhyay.myapp.Constants;
 import krishikalyan.aupadhyay.myapp.R;
 import krishikalyan.aupadhyay.myapp.adapters.ViewPagerAdapter;
-import krishikalyan.aupadhyay.myapp.adapters.WeatherRecyclerAdapter;
 import krishikalyan.aupadhyay.myapp.fragments.RecyclerViewFragment;
+import krishikalyan.aupadhyay.myapp.loginstuffs.LoginActivity;
 import krishikalyan.aupadhyay.myapp.models.Weather;
 import krishikalyan.aupadhyay.myapp.navdrawer.MyMenuFragment;
 import krishikalyan.aupadhyay.myapp.navdrawer.core.AmitStyleDrawer;
@@ -124,8 +124,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        /*Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
         appView = findViewById(R.id.viewApp);
 
@@ -198,7 +198,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             switch (id)
             {
                 case R.id.home_nav:
-
+                    startActivity(new Intent(HomeActivity.this, MainActivity.class));
                     break;
                 case R.id.menu_settings :
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));

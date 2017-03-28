@@ -89,7 +89,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".farmershome.FarmersHomeActivity" />
         <activity android:name=".activities.HomeActivity" />
-        <activity android:name=".loginstuffs.LoginActivity"></activity>
+        <activity android:name=".loginstuffs.LoginActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -37,4 +37,7 @@
     <color name="content_font_black">#737373</color>
     <color name="name_font_black">#a3a3a3</color>
 
+    <color name="myfavColor">#423752</color>
+    <color name="darkred">#ffb4284d</color>
+    <color name="fab_color_pressed">#007787</color>
 </resources>
