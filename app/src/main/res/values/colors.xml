@@ -27,4 +27,14 @@
     <color name="classic_darkTheme_colorTintedBackground">#263238</color>
 
     <color name="paint_color">#ffffff</color>
+
+    <color name="login_orange">#ff8d27</color>
+    <color name="login_text_bg">#05000000</color>
+    <color name="login_text_color">#b4b4b4</color>
+
+    <!-- tweets detail color -->
+    <color name="time_font_black">#dddddd</color>
+    <color name="content_font_black">#737373</color>
+    <color name="name_font_black">#a3a3a3</color>
+
 </resources>
