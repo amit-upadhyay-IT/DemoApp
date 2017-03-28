@@ -46,7 +46,6 @@ dependencies {
     compile 'com.google.android.apps.dashclock:dashclock-api:+'
     compile 'com.roughike:bottom-bar:1.4.0.1'
     compile 'com.diogobernardino:williamchart:2.2'
-    compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     compile 'com.nineoldandroids:library:2.4.0'
