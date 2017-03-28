@@ -198,7 +198,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             switch (id)
             {
                 case R.id.home_nav:
-                    startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                    
                     break;
                 case R.id.menu_settings :
                     startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
