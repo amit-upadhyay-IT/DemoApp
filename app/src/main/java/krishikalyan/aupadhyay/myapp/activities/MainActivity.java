@@ -355,7 +355,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         final WebView webView = new WebView(this);
         String about = "<p>Smart India Hackathon app</p>" +
                 "<p>Developed by <a href='mailto:amitwebhero@gmail.com'>Amit Upadhyay</a>, Aman Dubey, Tejisman Parida</p>" +
-                "<p>This app is made for hackathon competition held at Army Institute of Technology, Pune" +
+                "<p>THE BASIC CONCEPT OF THE PORTAL IS TO PROVIDE ALL SERVICES UNDER ONE ROOF" +
                 "<p>In this app we are Analyzing & finding pattern of past years data of a place using concepts such as Big Data, Hadoop & R programming. The analysis & foretasted weather data is used for prediction of future disasters, such as  Crop failure, Flood, Drought etc.";
         TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
         String textColor = String.format("#%06X", (0xFFFFFF & ta.getColor(0, Color.BLACK)));
