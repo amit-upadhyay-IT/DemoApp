@@ -58,5 +58,6 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.firebaseui:firebase-ui:1.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.github.ybq:Android-SpinKit:1.0.4'
 }
 apply plugin: 'com.google.gms.google-services'
