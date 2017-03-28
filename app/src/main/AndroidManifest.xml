@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:theme="@style/AppTheme" />
 
-        <receiver android:name="krishikalyan.aupadhyay.myapp.widgets.ExtensiveWidgetProvider">
+        <receiver android:name=".widgets.ExtensiveWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -36,7 +36,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/extensive_widget" />
         </receiver>
-        <receiver android:name="krishikalyan.aupadhyay.myapp.widgets.TimeWidgetProvider">
+        <receiver android:name=".widgets.TimeWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -47,7 +47,7 @@
         </receiver>
 
         <service
-            android:name="krishikalyan.aupadhyay.myapp.widgets.DashClockWeatherExtension"
+            android:name=".widgets.DashClockWeatherExtension"
             android:icon="@drawable/ic_cloud_white_24dp"
             android:label="@string/app_name"
             android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
@@ -66,7 +66,7 @@
                 android:value=".ExampleSettingsActivity" />
         </service>
 
-        <receiver android:name="krishikalyan.aupadhyay.myapp.AlarmReceiver">
+        <receiver android:name=".AlarmReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -74,26 +74,27 @@
         </receiver>
 
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.MapActivity"
-            android:parentActivityName="krishikalyan.aupadhyay.myapp.activities.MainActivity"
+            android:name=".activities.MapActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoStatusBar" />
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.GraphActivity"
+            android:name=".activities.GraphActivity"
             android:label="@string/action_graphs"
-            android:parentActivityName="krishikalyan.aupadhyay.myapp.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.SignupActivity"
+            android:name=".activities.SignupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="krishikalyan.aupadhyay.myapp.activities.CameraActivityFarm"
+            android:name=".activities.CameraActivityFarm"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name="krishikalyan.aupadhyay.myapp.farmershome.FarmersHomeActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".farmershome.FarmersHomeActivity" />
+        <activity android:name=".activities.HomeActivity"></activity>
     </application>
 
 </manifest>
