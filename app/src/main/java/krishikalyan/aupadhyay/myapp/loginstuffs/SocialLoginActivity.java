@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import krishikalyan.aupadhyay.myapp.R;
+import krishikalyan.aupadhyay.myapp.activities.HomeActivity;
 
 public class SocialLoginActivity extends AppCompatActivity {
 
@@ -73,7 +74,8 @@ public class SocialLoginActivity extends AppCompatActivity {
 
                 if (firebaseAuth.getCurrentUser() != null)
                 {
-                    Toast.makeText(SocialLoginActivity.this, "Already logged com ", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SocialLoginActivity.this, "Already logged com ", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SocialLoginActivity.this, HomeActivity.class));
                     finish();
                 }
 

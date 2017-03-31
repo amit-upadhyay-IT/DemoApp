@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 14
         versionName "1.2"
+        multiDexEnabled true
     }
 
     lintOptions {
@@ -28,6 +29,18 @@ android {
                 disable 'MissingTranslation'
             }
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
     }
 }
 
@@ -51,13 +64,15 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.devlight.navigationtabstrip:navigationtabstrip:1.0.4'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.firebase:firebase-client-android:2.5.2'
     compile 'com.firebaseui:firebase-ui:1.0.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.github.ybq:Android-SpinKit:1.0.4'
+    compile 'com.github.gabrielemariotti.cards:cardslib-core:2.1.0'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
 apply plugin: 'com.google.gms.google-services'

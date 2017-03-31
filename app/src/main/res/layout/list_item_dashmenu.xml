@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<krishikalyan.aupadhyay.myapp.mycards.HashtagView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/hashtag_height"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:foreground="?android:selectableItemBackground">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textStyle="bold"
+        android:fontFamily="@string/font_fontFamily_medium"
+        android:textSize="@dimen/hashtag_text_size"
+        android:textColor="@color/body_text_1_inverse"
+        android:gravity="center"/>
+
+    <ImageButton
+        android:id="@+id/description"
+        android:layout_width="@dimen/hashtag_desc_size"
+        android:layout_height="@dimen/hashtag_desc_size"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_description"
+        android:background="?selectableItemBackgroundBorderless"
+        android:visibility="visible" />
+
+</krishikalyan.aupadhyay.myapp.mycards.HashtagView>

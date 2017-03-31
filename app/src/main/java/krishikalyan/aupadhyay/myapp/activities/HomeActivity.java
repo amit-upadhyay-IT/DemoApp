@@ -26,6 +26,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
@@ -36,6 +39,8 @@ import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +61,8 @@ import krishikalyan.aupadhyay.myapp.Constants;
 import krishikalyan.aupadhyay.myapp.R;
 import krishikalyan.aupadhyay.myapp.adapters.ViewPagerAdapter;
 import krishikalyan.aupadhyay.myapp.fragments.RecyclerViewFragment;
-import krishikalyan.aupadhyay.myapp.loginstuffs.LoginActivity;
+import krishikalyan.aupadhyay.myapp.homefeatures.HomeCardAdapter;
+import krishikalyan.aupadhyay.myapp.homefeatures.HomeCardDataSet;
 import krishikalyan.aupadhyay.myapp.models.Weather;
 import krishikalyan.aupadhyay.myapp.navdrawer.MyMenuFragment;
 import krishikalyan.aupadhyay.myapp.navdrawer.core.AmitStyleDrawer;
@@ -124,8 +130,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);*/
 
         appView = findViewById(R.id.viewApp);
 
@@ -178,6 +184,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
 
         destroyed = false;
 
+        initHashTagView();
+
         initMappings();
 
         // Preload data from cache
@@ -225,6 +233,12 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
                 case R.id.crops_info_nav:
                     Toast.makeText(HomeActivity.this, "AIT Pune", Toast.LENGTH_SHORT).show();
                     break;
+                case R.id.menu_logout:
+                {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(HomeActivity.this, "Thanks, hope you liked our service", Toast.LENGTH_SHORT).show();
+                }
+                break;
             }
 
             return false;
@@ -342,7 +356,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         String about = "<p>Smart India Hackathon app</p>" +
                 "<p>Developed by <a href='mailto:amitwebhero@gmail.com'>Amit Upadhyay</a>, Aman Dubey, Tejisman Parida</p>" +
                 "<p>THE BASIC CONCEPT OF THE PORTAL IS TO PROVIDE ALL SERVICES UNDER ONE ROOF" +
-                "<p>In this app we are Analyzing & finding pattern of past years data of a place using concepts such as Big Data, Hadoop & R programming. The analysis & foretasted weather data is used for prediction of future disasters, such as  Crop failure, Flood, Drought etc.";
+                "<p>In this app we are Analyzing & finding pattern of past years data of a place using concepts such as Big Data, Hadoop & R programming. The analysis & foretasted weather data is used for prediction of future disasters, such as  Crop failure, Flood, Drought etc."+
+                "<p> Better information will increases yields, drives farm efficiency, and improves the lives of small-holder farmers globally";
         TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.textColorPrimary, R.attr.colorAccent});
         String textColor = String.format("#%06X", (0xFFFFFF & ta.getColor(0, Color.BLACK)));
         String accentColor = String.format("#%06X", (0xFFFFFF & ta.getColor(1, Color.BLUE)));
@@ -716,10 +731,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.action_about) {
-            aboutDialog();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -1029,5 +1040,34 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
             default:
                 return R.style.AppTheme_NoActionBar;
         }
+    }
+
+    private ArrayList<HomeCardDataSet> dataSetList;
+    private RecyclerView recyclerView;
+
+    public void initHashTagView()
+    {
+        recyclerView = (RecyclerView) findViewById(R.id.hashCardRecyclerView);
+
+        dataSetList = new ArrayList<>();
+
+        HomeCardDataSet dataSet1 = new HomeCardDataSet("Climate Prediction", "Pridicting climatic conditions ", android.R.color.holo_red_light);
+        HomeCardDataSet dataSet2 = new HomeCardDataSet("Whether conditions", "Deep understanding", android.R.color.holo_blue_bright);
+        HomeCardDataSet dataSet3 = new HomeCardDataSet("Field Details", "good knowledge", android.R.color.holo_green_dark);
+        HomeCardDataSet dataSet4 = new HomeCardDataSet("Dealers near you", "Love this technology", android.R.color.holo_orange_dark);
+        HomeCardDataSet dataSet5 = new HomeCardDataSet("Market details", "learnt to do data structure", android.R.color.holo_green_light);
+
+        dataSetList.add(dataSet1);
+        dataSetList.add(dataSet2);
+        dataSetList.add(dataSet3);
+        dataSetList.add(dataSet4);
+        dataSetList.add(dataSet5);
+
+        HomeCardAdapter myAdapter = new HomeCardAdapter(this, dataSetList, R.layout.list_item_dashmenu);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        //GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
+        GridLayoutManager glm = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(glm);
+        recyclerView.setAdapter(myAdapter);
     }
 }
