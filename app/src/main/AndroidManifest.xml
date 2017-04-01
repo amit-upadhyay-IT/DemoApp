@@ -105,7 +105,8 @@
             android:name=".loginstuffs.PasswordResetActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".whether_model.WhetherPridictionActivity"></activity>
+        <activity android:name=".whether_model.WhetherPridictionActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

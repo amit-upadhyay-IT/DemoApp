@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import krishikalyan.aupadhyay.myapp.R;
 import krishikalyan.aupadhyay.myapp.activities.MainActivity;
+import krishikalyan.aupadhyay.myapp.whether_model.WhetherPridictionActivity;
 
 /**
  * Created by aupadhyay on 4/1/17.
@@ -53,6 +54,16 @@ public class HomeCardAdapter extends RecyclerView.Adapter<HomeCardAdapter.ViewHo
                 Toast.makeText(context, ss, Toast.LENGTH_SHORT).show();
             }
         });
+
+        if (position == 0)
+        {
+            holder.myView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    context.startActivity(new Intent(context, WhetherPridictionActivity.class));
+                }
+            });
+        }
 
         if (position == 1)
         {

@@ -1,9 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/viewApp_prediction"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="krishikalyan.aupadhyay.myapp.whether_model.WhetherPridictionActivity">
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll"
+            android:background="@drawable/sunshine22"
+            app:titleEnabled="false">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_prediction"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:paddingTop="?attr/actionBarSize"
+                android:baselineAligned="false">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    android:alpha=".75"
+                    android:elevation="10dp"
+                    app:cardElevation="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha=".75"
+                        android:background="#00405d"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/month_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="April"
+                            android:textColor="@android:color/holo_blue_light"
+                            android:textSize="36dp" />
+
+                        <TextView
+                            android:id="@+id/min_temp_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Min temp : 23.89 °C"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/max_temp_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Max temp : 33.16 °C"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/avg_temp_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Avg temp : 28.50 °C"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/rainfall_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rainfall : 102.99 mm"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/cloud_cover_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cloud Cover : 43.29%"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/evatranspariration_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Evatranspiration:6.45"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/wet_day_freq_prediction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wet days freq:5.14"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@android:color/holo_blue_dark"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="#fff"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</android.support.design.widget.CoordinatorLayout>
