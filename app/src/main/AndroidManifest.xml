@@ -16,7 +16,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SettingsActivity"
             android:theme="@style/AppTheme" />
@@ -104,9 +104,11 @@
         <activity
             android:name=".loginstuffs.PasswordResetActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".whether_model.WhetherPridictionActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".whether_model.WhetherPridictionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".farmersfield.FarmersFieldHomeActivity"></activity>
     </application>
 
 </manifest>

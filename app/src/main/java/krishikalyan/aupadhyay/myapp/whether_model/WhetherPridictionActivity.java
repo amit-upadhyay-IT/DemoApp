@@ -31,9 +31,9 @@ public class WhetherPridictionActivity extends AppCompatActivity {
 
         viewPagerAdapter.addFragment(new RainfallPredictionFragment(), "Rainfall");
         viewPagerAdapter.addFragment(new TemperaturePredictionFragment(), "Temperature");
-        viewPagerAdapter.addFragment(new WetdaysfrequencyPredictionFragment(), "Wet Days Prediction");
+        viewPagerAdapter.addFragment(new WetdaysfrequencyPredictionFragment(), "Wet Days Frequency");
         viewPagerAdapter.addFragment(new CloudcoverPredictionFragment(), "Cloud Cover");
-        viewPagerAdapter.addFragment(new EvatranspirationPredictionFragment(), "Evatranspiration");
+        viewPagerAdapter.addFragment(new EvatranspirationPredictionFragment(), "Evapotranspiration");
         viewPagerAdapter.addFragment(new GroundfrostPredictionFragment(), "Ground Frost");
 
         viewPager.setAdapter(viewPagerAdapter);
@@ -51,7 +51,7 @@ public class WhetherPridictionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportActionBar().setTitle("Whether Prediction");
+        getSupportActionBar().setTitle("Weather Prediction");
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

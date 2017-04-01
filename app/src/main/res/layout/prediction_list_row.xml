@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="16dp"
+    android:layout_marginTop="4dp"
     android:background="#2c436fac"
     android:orientation="vertical">
 
@@ -24,47 +25,50 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/itemDate"
+                android:id="@+id/prediction_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="16:00"
+                android:text="April"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/itemDescription"
+                android:id="@+id/prediction_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No data"
+                android:text="Discription here"
+                android:visibility="gone"
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/itemWind"
+                android:id="@+id/first_line_prediction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:layout_marginTop="8dp"
-                android:text="Wind: 0 m/s"
+                android:text="First line"
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/itemPressure"
+                android:id="@+id/second_line_prediction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pressure: 0 hpa"
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/itemHumidity"
+                android:id="@+id/third_line_prediction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:text="Humidity: 0 %"
                 android:textSize="16dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/itemIcon"
-            android:layout_width="wrap_content"
+            android:id="@+id/image_prediction"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -72,18 +76,18 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="o"
+            android:text=""
             android:textSize="48dp" />
 
         <TextView
-            android:id="@+id/itemTemperature"
+            android:id="@+id/item_detail_prediction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0 °C"
             android:textSize="22dp"
             android:layout_marginTop="8dp"
-            android:layout_below="@+id/itemIcon"
-            android:layout_alignRight="@+id/itemIcon"
-            android:layout_alignEnd="@+id/itemIcon" />
+            android:layout_below="@+id/image_prediction"
+            android:layout_alignRight="@+id/image_prediction"
+            android:layout_alignEnd="@+id/image_prediction" />
     </RelativeLayout>
 </LinearLayout>
