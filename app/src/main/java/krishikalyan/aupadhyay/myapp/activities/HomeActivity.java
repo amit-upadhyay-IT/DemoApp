@@ -1054,14 +1054,16 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         HomeCardDataSet dataSet1 = new HomeCardDataSet("Climate Prediction", "Pridicting climatic conditions ", android.R.color.holo_red_light);
         HomeCardDataSet dataSet2 = new HomeCardDataSet("Whether conditions", "Deep understanding", android.R.color.holo_blue_bright);
         HomeCardDataSet dataSet3 = new HomeCardDataSet("Field Details", "good knowledge", android.R.color.holo_green_dark);
-        HomeCardDataSet dataSet4 = new HomeCardDataSet("Dealers near you", "Love this technology", android.R.color.holo_orange_dark);
-        HomeCardDataSet dataSet5 = new HomeCardDataSet("Market details", "learnt to do data structure", android.R.color.holo_green_light);
+        HomeCardDataSet dataSet4 = new HomeCardDataSet("Pest detection & dealers", "Pest detection & dealers", android.R.color.holo_red_dark);
+        HomeCardDataSet dataSet5 = new HomeCardDataSet("Dealers near you", "Dealers near you", android.R.color.holo_orange_dark);
+        //HomeCardDataSet dataSet6 = new HomeCardDataSet("Market details", "learnt to do data structure", android.R.color.holo_green_light);
 
         dataSetList.add(dataSet1);
         dataSetList.add(dataSet2);
         dataSetList.add(dataSet3);
         dataSetList.add(dataSet4);
         dataSetList.add(dataSet5);
+        //dataSetList.add(dataSet6);
 
         HomeCardAdapter myAdapter = new HomeCardAdapter(this, dataSetList, R.layout.list_item_dashmenu);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

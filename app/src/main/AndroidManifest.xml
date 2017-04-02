@@ -108,7 +108,17 @@
         <activity
             android:name=".whether_model.WhetherPridictionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".farmersfield.FarmersFieldHomeActivity"></activity>
+        <activity
+            android:name=".farmersfield.FarmersFieldHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pest_detection.PestDetectionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".farmersfield.CropsMonitoringActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.MachinelearningGraphActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

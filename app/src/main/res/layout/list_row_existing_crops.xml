@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp"
+    android:layout_marginTop="4dp"
+    android:background="#2c436fac"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="?android:attr/listDivider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/crop_name_field_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crop Name: "
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/crop_date_field_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sowing date : "
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/minimum_rainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minimum Rainfall :"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/maximum_rainfall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Maximum Rainfall"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/germination_min_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min Germination Temp:"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/germination_max_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Germination Temp:"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/ripening_min_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min Ripening Temp:"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/ripening_max_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max Ripening Temp:"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/ph_min_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pH Minimum value :"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/ph_max_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="pH Maximum value :"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/image_prediction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:text=""
+            android:textSize="48dp" />
+
+        <Button
+            android:id="@+id/add_button_field_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD"
+            android:visibility="gone"
+            android:textSize="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/image_prediction"
+            android:layout_alignRight="@+id/image_prediction"
+            android:layout_alignEnd="@+id/image_prediction" />
+    </RelativeLayout>
+</LinearLayout>

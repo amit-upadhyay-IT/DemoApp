@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="krishikalyan.aupadhyay.myapp.farmersfield.CropsMonitoringActivity">
+
+    <TextView
+        android:id="@+id/time_stamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textStyle="bold"
+        android:text="Time Stamp : 0.003"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/soil_moisture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_weight="4"
+            android:text="Soil Moisture : 0.003"
+            android:layout_marginBottom="10dp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:background="@drawable/ic_thumb_down_black_24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_soil_moisture"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/soil_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_weight="4"
+            android:text="Temperature : 27.96 'C"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:background="@drawable/ic_thumb_up_black_24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_soil_temp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/light_intensity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_weight="4"
+            android:text="Light Intensity : 0.003"
+            android:layout_marginBottom="10dp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:background="@drawable/ic_thumb_up_black_24dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_light_intensity"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="1"
+            android:background="#999999"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12sp"
+            android:text=""
+            android:textColor="#9b92b3"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="1"
+            android:background="#999999"/>
+
+    </LinearLayout>
+</LinearLayout>
