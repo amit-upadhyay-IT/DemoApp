@@ -30,3 +30,5 @@ proguard/
 .idea
 .gradle
 *.iml
+
+amitTF/
